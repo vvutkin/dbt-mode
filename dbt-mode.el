@@ -5,10 +5,13 @@
 ;; Author: Richard Fulop <mail@richardfulop.com>
 ;; Keywords: convenience sql
 ;; Maintainer: Richard Fulop <mail@richardfulop.com>
+;; Package-Requires: ((emacs "28.1"))
+;; SPDX-License-Identifier: MIT
+;; Version: prerelease
 
 ;;; Commentary:
 
-;;
+;; I haven't tested this on any earlier versions of Emacs, so I'm not providing any warranties for below 28.1.
 
 ;;; Code:
 
