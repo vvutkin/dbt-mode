@@ -68,6 +68,13 @@ FILE-NAME: the path to the model"
   (interactive)
   (find-file (dbt-get-compiled-version buffer-file-name)))
 
+(defun dbt-open-compiled-prd ()
+  "Open the compiled version of the current buffer file."
+  (interactive)
+  (find-file (dbt-get-compiled-version buffer-file-name))
+  (query-replace "dev_richie_" "prd_")
+  (query-replace "dev_" "prd_"))
+
 (defun dbt-compile ()
   "Call dbt compile on project in the current directory."
   (interactive)
