@@ -80,6 +80,12 @@ FILE-NAME: the path to the model"
   (interactive)
   (async-shell-command "dbt compile"))
 
+(defun dbt-compile-model ()
+  "Call dbt compile on model in the current buffer."
+  (interactive)
+  (let ((model (file-name-base buffer-file-name)))
+    (async-shell-command (format "dbt compile --select %s" model))))
+
 ;;;###autoload
 (define-minor-mode dbt-mode
   "Toggle dbt mode, a local minor mode."
