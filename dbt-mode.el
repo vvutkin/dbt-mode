@@ -21,10 +21,10 @@
   :group 'sql)
 
 (defun dbt-run-buffer ()
-    "Run model from the current buffer."
-    (interactive)
-    (let ((model (file-name-base buffer-file-name)))
-      (async-shell-command (format "dbt run --select %s" model))))
+  "Run model from the current buffer."
+  (interactive)
+  (let ((model (file-name-base buffer-file-name)))
+    (async-shell-command (format "dbt run --select %s" model))))
 
 (defun dbt-run ()
   "Run the entire dbt project."
@@ -36,6 +36,12 @@
   (interactive)
   (async-shell-command "dbt test"))
 
+(defun dbt-test-model ()
+  "Test the dbt model in the current buffer."
+  (interactive)
+  (let ((model (file-name-base buffer-file-name)))
+    (async-shell-command (format "dbt test --select %s" model))))
+
 (defun dbt-format-buffer ()
   "Call dbt-format shell function on the current buffer's file location."
   (interactive)
@@ -46,10 +52,10 @@
   (save-buffer))
 
 (defun dbt-build-buffer ()
-    "Run model from the current buffer."
-    (interactive)
-    (let ((model (file-name-base buffer-file-name)))
-      (async-shell-command (format "dbt build --select %s" model))))
+  "Run model from the current buffer."
+  (interactive)
+  (let ((model (file-name-base buffer-file-name)))
+    (async-shell-command (format "dbt build --select %s" model))))
 
 (defun dbt-build ()
   "Call dbt build on project in the current directory."
@@ -79,6 +85,12 @@ FILE-NAME: the path to the model"
   "Call dbt compile on project in the current directory."
   (interactive)
   (async-shell-command "dbt compile"))
+
+(defun dbt-compile-model ()
+  "Call dbt compile on model in the current buffer."
+  (interactive)
+  (let ((model (file-name-base buffer-file-name)))
+    (async-shell-command (format "dbt compile --select %s" model))))
 
 ;;;###autoload
 (define-minor-mode dbt-mode
