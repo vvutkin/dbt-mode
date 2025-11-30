@@ -63,11 +63,11 @@
   (async-shell-command "dbt build"))
 
 (defun dbt-get-compiled-version (file-name)
-    "Get the path to the compiled version of the file.
+  "Get the path to the compiled version of the file.
 FILE-NAME: the path to the model"
-    (let* ((git-root (replace-regexp-in-string "\n" "" (shell-command-to-string "pushd ~/workspace/dbt-analytics; git rev-parse --show-toplevel")))
-           (file-name-regex (concat "^" (file-name-nondirectory file-name) "$")))
-      (car (directory-files-recursively (concat git-root "/target/compiled/") file-name-regex ))))
+  (let* ((proj-root (getenv "DBT_PROJECT_DIR"))
+         (file-name-regex (concat "^" (file-name-nondirectory file-name) "$")))
+    (car (directory-files-recursively (concat proj-root "/target/compiled/") file-name-regex ))))
 
 (defun dbt-open-compiled ()
   "Open the compiled version of the current buffer file."
